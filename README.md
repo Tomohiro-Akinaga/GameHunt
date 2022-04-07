@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Game Hunt
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app gives you lots of game information.
 
 ## Available Scripts
 
