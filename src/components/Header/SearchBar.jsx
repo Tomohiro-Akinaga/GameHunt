@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { background } from "../../styleVariables";
+import { background, textColor, textColorHover } from "../../styleVariables";
+import searchButtonImg from "../../assets/images/search-button.png";
+import searchButtonHoverImg from "../../assets/images/search-button-hover.png";
+import { useState } from "react";
 
 const Form = styled.form`
     height: 45px;
@@ -20,11 +23,15 @@ const Form = styled.form`
 const Button = styled.button`
     height: 45px;
     border: none;
-    padding: 10px;
+    padding: 14px;
     background-color: transparent;
     &:hover {
         cursor: pointer;
     }
+`;
+
+const ButtonImg = styled.img`
+    height: 100%;
 `;
 
 const Input = styled.input`
@@ -37,13 +44,29 @@ const Input = styled.input`
     &:focus {
         outline: none;
     }
+    &::placeholder {
+        color: ${textColor.inputPlaceholder};
+        font-weight: 300;
+    }
+    &:hover {
+        &::placeholder {
+            color: ${textColorHover.inputPlaceholder};
+        }
+    }
 `;
 
 function SearchBar() {
+    const [isHover, setIsHover] = useState(false);
     return (
-        <Form action="submit">
+        <Form
+            action="submit"
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
+        >
             <Button>
-                {/* <FontAwesomeIcon magnifyingGlass={magnifyingGlass} /> */}
+                <ButtonImg
+                    src={isHover ? searchButtonHoverImg : searchButtonImg}
+                />
             </Button>
             <Input type="input" placeholder="Search games" />
         </Form>
