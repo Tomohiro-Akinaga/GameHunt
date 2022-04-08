@@ -1,5 +1,7 @@
+import Logo from "./Logo/Logo";
+
 function Header() {
-    return <h1>Header</h1>;
+    return <Logo />;
 }
 
 export default Header;
