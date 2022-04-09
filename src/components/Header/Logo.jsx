@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Title = styled.h1`
+    color: #fff;
     font-size: 1.4em;
     font-weight: 700;
     text-align: center;

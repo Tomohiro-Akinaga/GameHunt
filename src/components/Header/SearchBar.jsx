@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { background, textColor, textColorHover } from "../../styleVariables";
-import searchButtonImg from "../../assets/images/search-button.png";
-import searchButtonHoverImg from "../../assets/images/search-button-hover.png";
+import { Zap } from "@styled-icons/octicons";
+import { background, text, textHover, button } from "../../styleVariables";
 import { useState } from "react";
 
 const Form = styled.form`
@@ -9,66 +8,80 @@ const Form = styled.form`
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: ${background.searchBar};
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     transition: all 0.2s;
+    background-color: ${background.searchBar};
+    background-color: ${(props) =>
+        props.isActive ? "white" : background.searchBar};
     &:hover {
         background-color: #fff;
     }
 `;
 
 const Button = styled.button`
+    padding: 10px 10px 10px 15px;
     height: 45px;
+    width: 45px;
     border: none;
-    padding: 14px;
     background-color: transparent;
     &:hover {
         cursor: pointer;
     }
 `;
 
-const ButtonImg = styled.img`
-    height: 100%;
-`;
+const iconStyle = {
+    color: button.searchBar,
+    height: "100%",
+    width: "100%",
+    hover: "black",
+};
 
 const Input = styled.input`
     height: 45px;
     width: 100%;
     border: none;
-    color: #000;
+    color: ${text.inputText};
     background-color: transparent;
     padding-right: 20px;
     &:focus {
         outline: none;
     }
     &::placeholder {
-        color: ${textColor.inputPlaceholder};
+        color: ${text.inputPlaceholder};
         font-weight: 300;
     }
     &:hover {
         &::placeholder {
-            color: ${textColorHover.inputPlaceholder};
+            color: ${textHover.inputPlaceholder};
         }
     }
 `;
 
+const RedZap = styled(Zap)`
+    color: red;
+`;
+
 function SearchBar() {
-    const [isHover, setIsHover] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+
     return (
         <Form
             action="submit"
-            onMouseEnter={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
+            onSubmit={(e) => e.preventDefault()}
+            isActive={isActive}
         >
             <Button>
-                <ButtonImg
-                    src={isHover ? searchButtonHoverImg : searchButtonImg}
-                />
+                <RedZap />
             </Button>
-            <Input type="input" placeholder="Search games" />
+            <Input
+                type="input"
+                placeholder="Search games"
+                onFocus={() => setIsActive(true)}
+                onBlur={() => setIsActive(false)}
+            />
         </Form>
     );
 }
