@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
+import Item from "./Item";
 
 const Container = styled.header`
     padding: 20px;
@@ -14,6 +15,7 @@ function Header() {
         <Container>
             <Logo />
             <SearchBar />
+            <Item />
         </Container>
     );
 }
