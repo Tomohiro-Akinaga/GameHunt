@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Search } from "@styled-icons/boxicons-regular/Search";
 import { background, text, textHover, button } from "../../styleVariables";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SearchContext } from "../../SearchContext";
 
 const Form = styled.form`
     height: 45px;
@@ -58,27 +59,34 @@ const SearchIcon = styled(Search)`
 function SearchBar() {
     const [formIsActive, setFormIsActive] = useState(false);
     const [inputIsActive, setInputIsActive] = useState(false);
+    const [inputText, setInputText] = useState("");
+    const { setSearchKeyword } = useContext(SearchContext);
 
     return (
         <Form
             action="submit"
-            onSubmit={(e) => e.preventDefault()}
             onMouseEnter={() => setFormIsActive(true)}
             onMouseLeave={() => !inputIsActive && setFormIsActive(false)}
             formIsActive={formIsActive}
+            onSubmit={(e) => {
+                e.preventDefault();
+                setSearchKeyword(inputText);
+            }}
         >
             <Button>
                 <SearchIcon formIsActive={formIsActive} />
             </Button>
             <Input
                 type="input"
+                value={inputText}
                 placeholder="Search games"
+                formIsActive={formIsActive}
+                onChange={(e) => setInputText(e.target.value)}
                 onFocus={() => setInputIsActive(true)}
                 onBlur={() => {
                     setInputIsActive(false);
                     setFormIsActive(false);
                 }}
-                formIsActive={formIsActive}
             />
         </Form>
     );
