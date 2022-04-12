@@ -8,7 +8,7 @@ export const text = {
 };
 
 export const textHover = {
-    inputPlaceholder: "#5B5B5B",
+    inputPlaceholderHover: "#5B5B5B",
 };
 
 export const button = {

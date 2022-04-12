@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Zap } from "@styled-icons/octicons";
+import { Search } from "@styled-icons/boxicons-regular/Search";
 import { background, text, textHover, button } from "../../styleVariables";
 import { useState } from "react";
 
@@ -13,9 +13,9 @@ const Form = styled.form`
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     transition: all 0.2s;
-    background-color: ${background.searchBar};
     background-color: ${(props) =>
-        props.isActive ? "white" : background.searchBar};
+        props.formIsActive ? "white" : background.searchBar};
+
     &:hover {
         background-color: #fff;
     }
@@ -32,55 +32,53 @@ const Button = styled.button`
     }
 `;
 
-const iconStyle = {
-    color: button.searchBar,
-    height: "100%",
-    width: "100%",
-    hover: "black",
-};
-
 const Input = styled.input`
     height: 45px;
     width: 100%;
     border: none;
-    color: ${text.inputText};
+    color: ${(props) => (props.formIsActive ? "black" : text.inputText)};
     background-color: transparent;
     padding-right: 20px;
     &:focus {
         outline: none;
     }
     &::placeholder {
-        color: ${text.inputPlaceholder};
+        color: ${(props) =>
+            props.formIsActive
+                ? textHover.inputPlaceholderHover
+                : text.inputPlaceholder};
         font-weight: 300;
-    }
-    &:hover {
-        &::placeholder {
-            color: ${textHover.inputPlaceholder};
-        }
     }
 `;
 
-const RedZap = styled(Zap)`
-    color: red;
+const SearchIcon = styled(Search)`
+    color: ${(props) => (props.formIsActive ? "black" : button.searchBar)};
 `;
 
 function SearchBar() {
-    const [isActive, setIsActive] = useState(false);
+    const [formIsActive, setFormIsActive] = useState(false);
+    const [inputIsActive, setInputIsActive] = useState(false);
 
     return (
         <Form
             action="submit"
             onSubmit={(e) => e.preventDefault()}
-            isActive={isActive}
+            onMouseEnter={() => setFormIsActive(true)}
+            onMouseLeave={() => !inputIsActive && setFormIsActive(false)}
+            formIsActive={formIsActive}
         >
             <Button>
-                <RedZap />
+                <SearchIcon formIsActive={formIsActive} />
             </Button>
             <Input
                 type="input"
                 placeholder="Search games"
-                onFocus={() => setIsActive(true)}
-                onBlur={() => setIsActive(false)}
+                onFocus={() => setInputIsActive(true)}
+                onBlur={() => {
+                    setInputIsActive(false);
+                    setFormIsActive(false);
+                }}
+                formIsActive={formIsActive}
             />
         </Form>
     );
