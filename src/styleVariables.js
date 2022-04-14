@@ -1,5 +1,6 @@
 export const background = {
-    searchBar: "#414141 ",
+    searchBar: "#414141",
+    myLibrary: "#A7A7A",
 };
 
 export const text = {
