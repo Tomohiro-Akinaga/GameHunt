@@ -4,7 +4,7 @@ const Container = styled.div`
     width: 37px;
     height: 37px;
     background: linear-gradient(#e66465, #9198e5);
-    margin: 0 10px;
+    margin-left: 10px;
     border-radius: 50%;
     display: flex;
     align-items: center;
