@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Library } from "@styled-icons/boxicons-regular/Library";
-import { AddSquare } from "@styled-icons/fluentui-system-filled/AddSquare";
-import { Folder } from "@styled-icons/entypo/Folder";
+import { Library } from "@styled-icons/fluentui-system-regular/Library";
+import { PlusSquare } from "@styled-icons/bootstrap/PlusSquare";
+import { Folder } from "@styled-icons/bootstrap/Folder";
 import { Link } from "react-router-dom";
 
 const StyledLink = styled(Link)`
@@ -10,7 +10,8 @@ const StyledLink = styled(Link)`
     font-size: 0.8rem;
     text-decoration: none;
     transition: all 0.1s;
-    margin: 0 15px;
+    margin: 0 10px;
+    padding: 0 10px;
     line-height: 40px;
     display: flex;
     align-items: center;
@@ -20,25 +21,24 @@ const StyledLink = styled(Link)`
     }
 `;
 
-const ItemIcon = styled(Library)`
-    color: black;
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-`;
-
 const addGameItem = [
     { icon: Library, text: "Add a game to your Library", link: "/" },
-    { icon: AddSquare, text: "Add a missing game", link: "/" },
+    { icon: PlusSquare, text: "Add a missing game", link: "/" },
     { icon: Folder, text: "Start a new collection", link: "/" },
 ];
+
+const iconStyle = {
+    width: "20px",
+    height: "20px",
+    marginRight: "10px",
+};
 
 function AddGameItem() {
     return (
         <>
             {addGameItem.map((item, index) => (
                 <StyledLink to={item.link} key={index}>
-                    <ItemIcon></ItemIcon>
+                    <item.icon style={iconStyle} />
                     {item.text}
                 </StyledLink>
             ))}
