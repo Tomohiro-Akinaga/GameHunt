@@ -3,11 +3,14 @@ import Avatar from "./HeaderItem/Avatar";
 import MyLibrary from "./HeaderItem/MyLibrary";
 import Notification from "./HeaderItem/Notification";
 import AddGame from "./HeaderItem/AddGame";
+import API from "./HeaderItem/API";
+import Setting from "./HeaderItem/Setting";
 
 const Container = styled.div`
-    width: 250px;
+    width: 300px;
     height: 60px;
     display: flex;
+    justify-content: space-evenly;
     align-items: center;
     margin: 0 20px;
 `;
@@ -19,6 +22,8 @@ function Item() {
             <MyLibrary />
             <Notification />
             <AddGame />
+            <API />
+            <Setting />
         </Container>
     );
 }
