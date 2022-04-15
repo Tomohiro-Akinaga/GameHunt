@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Avatar from "./HeaderItem/Avatar";
 import MyLibrary from "./HeaderItem/MyLibrary";
 import Notification from "./HeaderItem/Notification";
+import AddGame from "./HeaderItem/AddGame";
 
 const Container = styled.div`
     width: 250px;
@@ -17,6 +18,7 @@ function Item() {
             <Avatar />
             <MyLibrary />
             <Notification />
+            <AddGame />
         </Container>
     );
 }

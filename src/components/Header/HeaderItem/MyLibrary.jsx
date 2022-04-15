@@ -44,12 +44,12 @@ function MyLibrary() {
     const [isActive, setIsActive] = useState(false);
 
     const MyLibraryItem = [
-        "My Library",
-        "Overview",
-        "My Games",
-        "Wishlist",
-        "Reviews",
-        "Collections",
+        { text: "My Library", link: "/" },
+        { text: "Overview", link: "/" },
+        { text: "My Games", link: "/" },
+        { text: "Wishlist", link: "/" },
+        { text: "Reviews", link: "/" },
+        { text: "Collections", link: "/" },
     ];
 
     return (
@@ -61,8 +61,8 @@ function MyLibrary() {
             {isActive && (
                 <ItemBox>
                     {MyLibraryItem.map((item, index) => (
-                        <StyledLink to="/" key={index}>
-                            {item}
+                        <StyledLink to={item.link} key={index}>
+                            {item.text}
                         </StyledLink>
                     ))}
                 </ItemBox>
